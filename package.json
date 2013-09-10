@@ -1,0 +1,25 @@
+{
+	"name": "obscura",
+	"preferGlobal": false,
+	"version": "0.1.0",
+	"author": "Carrington <daniel@danielingraham.com>",
+	"description": "Small engine for transforming content based on user preferences and choices.",
+	"main": "./lib/obscura",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Carrington/Obscura.git"
+	},
+	"dependencies": {
+		"underscore": "1.5.x",
+		"async": "0.2.x",
+		"request": "2.27.x"
+	},
+	"devDependencies": {
+		"uglify-js": "2.4.x",
+		"mocha": "1.12.x"
+	},
+	"license": "MIT",
+	"engines": {
+		
+	}
+}
