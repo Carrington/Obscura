@@ -8,7 +8,7 @@ exports = module.exports = Obscura;
 
 //Expects filters to be an array, content to be a string
 Obscura.filterContent(filters, content, mode, cb) {
-	mode = (typeof mode === "undefined") ? "html" : mode;
+	mode = mode || "html";
 	groups = _.groupBy(filters, 'filterType');
 	for (var group in groups) {
 		if (this.hasOwnProperty(group)) {
