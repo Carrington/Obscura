@@ -19,23 +19,22 @@ Obscura.filterContent = function(filters, content, mode, cb) {
 }
 
 Obscura.censorGroup = function(censorClasses, content) {
+	$ = cheerio.load(content);
 	for (var i=0; i<censorClasses.length; i++) {
 		censorClass = censorClasses[i];
-		$ = cheerio.load(content);
 		$('.' + censorClass).remove();
-		return $.html();
 	}
+	return $.html();
 }
 
 Obscura.replaceString = function(replaceRules, content) {
-	
+	$ = cheerio.load(content);
 	for (i=0;i<replaceRules.length;i++) {
 		rule = replaceRules[i];
-		$ = cheerio.load(content);
 		
 		$('#' + rule.target).text(rule.replacement);
-		return $.html();
 	}
+	return $.html();
 }
 
 
