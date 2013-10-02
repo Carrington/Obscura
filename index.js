@@ -15,7 +15,7 @@ Obscura.filterContent = function(filters, content, mode, cb) {
 			content = this[group](groups[group], content, mode);
 		}
 	}
-	cb(content);
+	cb('', content);
 }
 
 Obscura.censorGroup = function(censorClasses, content) {
