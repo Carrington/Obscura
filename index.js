@@ -9,6 +9,9 @@ function Obscura(options) {
 //Expects filters to be an array, content to be a string
 Obscura.filterContent = function(filters, content, mode, cb) {
 	mode = mode || "html";
+	if (filters.length == 0)
+		cb('', content);
+        console.log('content');
 	groups = _.groupBy(filters, 'filterType');
 	for (var group in groups) {
 		if (this.hasOwnProperty(group)) {
