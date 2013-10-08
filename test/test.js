@@ -3,6 +3,19 @@ var assert = require("assert"),
     should = require("should");
 
 describe('obscura', function() {
+	describe('#filterContent', function() {
+		it('should return foo and bar, but not baz', function() {
+			var testString = "foo <span class='censor'>baz</span> <span id='replaceTarget'>baz</span>";
+			var filters = [];
+			filters[0] = {filterType: "censorGroup", payload: ['censor']};
+			filters[1] = {filterType: "replaceString", payload: {target: "replaceTarget", replacement:"bar"}};
+			var content = '';
+			var testContent = function(err, res) {
+				content = res;
+			}
+			obscura.filterContent(filters, testString, 'html', testContent).should.equal("foo <span id='replaceTarget'>bar</span>");
+		});
+	});
 	describe('#censorGroup', function() {
 		it('should return foo and not bar', function() {
 			var testString = "foo <span class='censor'>bar</span>";
