@@ -1,4 +1,5 @@
 var	cheerio = require('cheerio');
+var	_ = require('underscore');
 
 exports = module.exports = Obscura;
 
@@ -11,11 +12,13 @@ Obscura.filterContent = function(filters, content, mode, cb) {
 	mode = mode || "html";
 	if (filters.length == 0)
 		cb('', content);
-        console.log('content');
 	groups = _.groupBy(filters, 'filterType');
+
 	for (var group in groups) {
 		if (this.hasOwnProperty(group)) {
-			content = this[group](groups[group], content, mode);
+			for (i=0;i<groups[group].length;i++) {
+				content = this[group](groups[group][i].payload, content, mode);
+			}
 		}
 	}
 	cb('', content);
@@ -32,11 +35,9 @@ Obscura.censorGroup = function(censorClasses, content) {
 
 Obscura.replaceString = function(replaceRules, content) {
 	$ = cheerio.load(content);
-	for (i=0;i<replaceRules.length;i++) {
-		rule = replaceRules[i];
-		
-		$('#' + rule.target).text(rule.replacement);
-	}
+	rule = replaceRules;
+	$('#' + rule.target).text(rule.replacement);
+	
 	return $.html();
 }
 
